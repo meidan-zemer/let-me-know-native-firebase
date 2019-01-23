@@ -1,17 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Platform, Image, Text, View, ScrollView } from 'react-native';
 
 import firebase from 'react-native-firebase';
 
-interface props {
+interface props {}
 
-}
-
-interface state {
-
-}
-export default class App extends Component<props,state> {
-  constructor(props:props) {
+interface state {}
+export default class App extends Component<props, state> {
+  constructor(props: props) {
     super(props);
     this.state = {};
   }
@@ -20,7 +16,6 @@ export default class App extends Component<props,state> {
     // TODO: You: Do firebase things
     // const { user } = await firebase.auth().signInAnonymously();
     // console.warn('User -> ', user.toJSON());
-
     // await firebase.analytics().logEvent('foo', { bar: '123'});
   }
 
@@ -28,13 +23,9 @@ export default class App extends Component<props,state> {
     return (
       <ScrollView>
         <View style={styles.container}>
-          <Image source={require('./assets/ReactNativeFirebase.png')} style={[styles.logo]}/>
-          <Text style={styles.welcome}>
-            Welcome to {'\n'} React Native Firebase
-          </Text>
-          <Text style={styles.instructions}>
-            To get started, edit App.js
-          </Text>
+          <Image source={require('../assets/ReactNativeFirebase.png')} style={[styles.logo]} />
+          <Text style={styles.welcome}>Welcome to {'\n'} React Native Firebase</Text>
+          <Text style={styles.instructions}>To get started, edit App.js</Text>
           {Platform.OS === 'ios' ? (
             <Text style={styles.instructions}>
               Press Cmd+R to reload,{'\n'}
@@ -51,8 +42,7 @@ export default class App extends Component<props,state> {
 
             {
               //@ts-ignore
-              firebase.admob.nativeModuleExists && <Text style={styles.module}>admob()</Text>
-            }
+            firebase.admob.nativeModuleExists && <Text style={styles.module}>admob()</Text>}
             {firebase.analytics.nativeModuleExists && <Text style={styles.module}>analytics()</Text>}
             {firebase.auth.nativeModuleExists && <Text style={styles.module}>auth()</Text>}
             {firebase.config.nativeModuleExists && <Text style={styles.module}>config()</Text>}
@@ -64,8 +54,7 @@ export default class App extends Component<props,state> {
 
             {
               //@ts-ignore
-              firebase.invites.nativeModuleExists && <Text style={styles.module}>invites()</Text>
-            }
+            firebase.invites.nativeModuleExists && <Text style={styles.module}>invites()</Text>}
             {firebase.links.nativeModuleExists && <Text style={styles.module}>links()</Text>}
             {firebase.messaging.nativeModuleExists && <Text style={styles.module}>messaging()</Text>}
             {firebase.notifications.nativeModuleExists && <Text style={styles.module}>notifications()</Text>}
@@ -113,5 +102,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 4,
     textAlign: 'center',
-  }
+  },
 });
