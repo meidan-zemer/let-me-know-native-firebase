@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "295381570076",
+    "firebase_url": "https://let-me-know-36373.firebaseio.com",
+    "project_id": "let-me-know-36373",
+    "storage_bucket": "let-me-know-36373.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295381570076:android:55d5831dc9edf6dc",
+        "android_client_info": {
+          "package_name": "com.zemer.letmeknow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "295381570076-arucu4i0jovne15ce77dt0f44pue9ng0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiEoncuhViLj5yDPQYKnVCQ7vLSsi3hpo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
