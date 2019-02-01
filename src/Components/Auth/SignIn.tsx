@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {withFirebase} from 'react-redux-firebase';
 import { Button, Input, Text } from 'react-native-elements';
 import {Auth} from 'react-native-firebase/auth'
-//import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
+import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import { View } from 'react-native';
 import Loading from '../Loading'
 
@@ -31,6 +31,7 @@ class SignIn extends Component<props, state> {
 
   constructor(props:props){
     super(props);
+    GoogleSignin.configure();
     this.state={
       signIn:{
         password:"",
@@ -62,16 +63,16 @@ class SignIn extends Component<props, state> {
         this.setState({ ...this.state, signUp: { ...this.state.signUp, err: err.message },isSigninInProgress:false })
       });
   }
- /*googleSignIn() {
+ googleSignIn() {
     this.setState({isSigninInProgress: true });
     GoogleSignin.hasPlayServices()
       .then(() => GoogleSignin.signIn())
       .catch(err => {
         console.log(err);
-        this.setState({ isSigninInProgress: false });
+        this.setState({ ...this.state, signUp: { ...this.state.signUp, err: err.message },isSigninInProgress:false })
       });
   }
-*/
+
   render() {
     if(this.state.isSigninInProgress){
       return (<Loading/>);
@@ -113,14 +114,12 @@ class SignIn extends Component<props, state> {
             />
             {this.state.signUp.err ? <Text h4>{this.state.signUp.err}</Text>: null}
             <Text h4> Or</Text>
-            {
-              /*<GoogleSigninButton
+            <GoogleSigninButton
               style={{ width: '100%', height: 48 }}
               onPress={() => this.googleSignIn()}
               size={GoogleSigninButton.Size.Icon}
               color={GoogleSigninButton.Color.Dark}
-            />*/
-            }
+            />
            </View>
         </View>
       );
