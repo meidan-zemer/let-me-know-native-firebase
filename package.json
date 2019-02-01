@@ -6,6 +6,7 @@
     "@types/jest": "^23.3.13",
     "@types/react": "^16.7.20",
     "@types/react-native": "^0.57.31",
+    "@types/react-navigation": "^3.0.1",
     "@types/react-redux": "^7.0.0",
     "@types/redux": "^3.6.0",
     "babel-jest": "23.6.0",
@@ -27,6 +28,7 @@
     "start": "react-native start",
     "test": "jest",
     "tsc": "tsc",
+    "clean": "cd android && gradlew clean && cd .. && react-native start --reset-cache",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\" \"src/**/*.tsx\" \"tests/**/*.ts\" \"tests/**/*.js\" \"tests/**/*.tsx\""
   },
   "jest": {
@@ -35,7 +37,11 @@
   "dependencies": {
     "react": "^16.7.0",
     "react-native": "^0.58.0-rc.3",
+    "react-native-elements": "^1.0.0",
     "react-native-firebase": "^5.2.0",
+    "react-native-gesture-handler": "^1.0.15",
+    "react-native-vector-icons": "^6.2.0",
+    "react-navigation": "^3.0.9",
     "react-redux": "^6.0.0",
     "react-redux-firebase": "^3.0.0-alpha.6",
     "redux": "^4.0.1",
