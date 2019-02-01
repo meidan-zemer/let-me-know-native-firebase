@@ -82,13 +82,13 @@ class SignIn extends Component<props, state> {
             <Text h3>Sign In</Text>
             <Input
               placeholder="Enter your Email"
-             // leftIcon={{ type: 'material', name: 'email' }}
+              leftIcon={{ type: 'material', name: 'email' }}
               onChangeText={text => this.setState({ ...this.state, signIn: { ...this.state.signIn, email: text } })}
             />
             <Input
               secureTextEntry={true}
               placeholder="Enter your password"
-             // leftIcon={{ type: 'material', name: 'lock' }}
+              leftIcon={{ type: 'material', name: 'lock' }}
               onChangeText={text => this.setState({ ...this.state, signIn: { ...this.state.signIn, password: text } })}
             />
             <Button title={"Sign In"} onPress={()=>this.signIn(this.state.signIn.email, this.state.signIn.password)} />
@@ -98,13 +98,13 @@ class SignIn extends Component<props, state> {
             <Text h3>Sign Up</Text>
             <Input
               placeholder="Enter your Email"
-             // leftIcon={{ type: 'material', name: 'email' }}
+              leftIcon={{ type: 'material', name: 'email' }}
               onChangeText={text => this.setState({ ...this.state, signUp: { ...this.state.signUp, email: text } })}
             />
             <Input
               secureTextEntry={true}
               placeholder="Enter your password"
-              //leftIcon={{ type: 'material', name: 'lock' }}
+              leftIcon={{ type: 'material', name: 'lock' }}
               onChangeText={text => this.setState({ ...this.state, signUp: { ...this.state.signUp, password: text } })}
             />
             <Button
