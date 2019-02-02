@@ -46,7 +46,7 @@
     "react-redux": "^6.0.0",
     "react-redux-firebase": "^3.0.0-alpha.6",
     "redux": "^4.0.1",
-    "redux-firebase": "^0.3.3",
+    "redux-firebase ": "^0.3.3",
     "redux-firestore": "^0.6.3"
   }
 }

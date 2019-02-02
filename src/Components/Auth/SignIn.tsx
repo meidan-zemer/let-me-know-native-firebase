@@ -117,7 +117,7 @@ class SignIn extends Component<props, state> {
             <GoogleSigninButton
               style={{ width: '100%', height: 48 }}
               onPress={() => this.googleSignIn()}
-              size={GoogleSigninButton.Size.Icon}
+              size={GoogleSigninButton.Size.Wide}
               color={GoogleSigninButton.Color.Dark}
             />
            </View>

@@ -3,17 +3,18 @@ import { createStackNavigator, createAppContainer} from 'react-navigation';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withFirebase } from 'react-redux-firebase';
-import { View, Text, Button } from 'react-native';
 import SignIn from './Auth/SignIn';
-import Header from './Header';
 import ContactPoints from './ContactPoints';
-
+import ContactPoint from './ContactPoint';
+import AddContactPoint from './AddContactPoint';
 /*
  * Create navigation container
  */
 const AppNavigator = createStackNavigator(
   {
-    Home: { screen: ContactPoints }
+    Home: { screen: ContactPoints },
+    AddContactPoint: { screen: AddContactPoint },
+    ContactPoint: { screen: ContactPoint },
   },
   {
     initialRouteName: 'Home'
@@ -33,22 +34,25 @@ interface state {
 }
 
 class Main extends Component<props, state> {
+
   constructor(props: props) {
     super(props);
     this.state = {
       user: null
     };
+  }
 
-    props.firebase.auth().onAuthStateChanged((user: any) => {
-      this.setState({ user: user });
+  componentDidMount(): void {
+    this.props.firebase.auth().onAuthStateChanged((user: any) => {
+      this.setState({user: user});
     });
   }
 
   render() {
-    return <View>
-      {this.state.user ? <Header/> : null}
-      {this.state.user ? <AppNavigatorComp/> : <SignIn/>}
-    </View>}
+    return (
+      this.state.user ? <AppNavigatorComp/> : <SignIn/>
+    );
+  }
 }
 
 export default compose(
