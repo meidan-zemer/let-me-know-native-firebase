@@ -3,10 +3,10 @@ import { Provider } from 'react-redux';
 import { createStore, compose } from 'redux';
 import { ReactReduxFirebaseProvider  } from 'react-redux-firebase';
 import { createFirestoreInstance  } from 'redux-firestore';
-import rootReducer from './redux/rootReducer';
+import rootReducer from '../redux/rootReducer';
 import firebase from 'react-native-firebase';
 
-import Main from './Components/Main';
+import Main from './Main';
 
 // react-redux-firebase config
 const rrfConfig = {
