@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect, withFirebase, isLoaded, isEmpty } from 'react-redux-firebase';
-import { View, StyleSheet } from 'react-native';
-import { ListItem, Text } from 'react-native-elements';
+import { View, StyleSheet,ScrollView } from 'react-native';
+import { ListItem, Text,Input, Button } from 'react-native-elements';
 import { discussionsSubCollectionName, contactPointsCollectionName, messagesSubCollectionName } from '../consts';
 import { contactPointType, discussionType, messageType } from 'let-me-know-ts-definitions';
 import Loading from "./Loading";
@@ -41,7 +41,8 @@ class ContactPointDiscussion extends Component<props,state> {
   }
   getMessageSenderAlias(uid: string) {
     if (uid === this.props.uid) {
-      return this.props.firebase.auth().currentUser.displayName;
+      const user = this.props.firebase.auth().currentUser;
+      return user.displayName ? user.displayName : user.email;
     } else {
       if (uid === this.props.discussion.connectorId) {
         if (this.props.discussion.connectorAlias) {
@@ -58,7 +59,6 @@ class ContactPointDiscussion extends Component<props,state> {
       }
     }
   }
-
   renderMessage(msg: messageType, index: number) {
     return (
       <ListItem key={index}
@@ -67,16 +67,49 @@ class ContactPointDiscussion extends Component<props,state> {
       />
     );
   }
+  sendMessage() {
+    const msg: messageType = {
+      createDate: this.props.firestore.FieldValue.serverTimestamp(),
+      content: this.state.newMessageContent,
+      from: this.props.uid,
+    };
 
+    this.props.firestore
+      .add(
+        `${contactPointsCollectionName}/${this.props.cp.cpId}/${discussionsSubCollectionName}/${
+          this.props.discussion.connectorId
+          }/${messagesSubCollectionName}`,
+        msg,
+      )
+      .then(() => {
+        this.setState({ newMessageContent: '' });
+        console.log('Added message');
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  }
+  renderNewMessage(){
+    return (
+      <View>
+        <Input onChangeText={t=>this.setState({newMessageContent:t})}
+               value={this.state.newMessageContent}
+        />
+        <Button onPress={()=>this.sendMessage()}
+                title={"Send"}
+        />
+      </View>
+    );
+  }
   render() {
     if(!this.props.loaded){
       return <Loading/>;
     } else {
       return (
-        <View >
+        <ScrollView>
           <Text h1>{this.props.discussion.title}</Text>
           <Text h2>{"Created By " + this.props.discussion.connectorAlias}</Text>
-          <View >
+
             {
               this.props.noMessages || this.props.messages.length == 0 ?
                 <Text>{"No Messages"}</Text>
@@ -84,8 +117,11 @@ class ContactPointDiscussion extends Component<props,state> {
                 this.props.messages
                   .map((m, i) => this.renderMessage(m, i))
             }
-          </View>
-        </View>
+            <ListItem
+                key={this.props.messages.length}
+                title={this.renderNewMessage()}
+            />
+        </ScrollView>
       );
     }
   }
