@@ -1,13 +1,14 @@
-import React from 'react'
-import { View, Text, ActivityIndicator, StyleSheet } from 'react-native'
+import React from 'react';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import {Text} from 'react-native-elements';
 export default class Loading extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Loading</Text>
+        <Text h4 style={styles.loadingMessage}>{"Almost there ..."}</Text>
         <ActivityIndicator size="large" />
       </View>
-    )
+    );
   }
 }
 const styles = StyleSheet.create({
@@ -15,5 +16,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  loadingMessage:{
+    marginTop:100
   }
-})
+});

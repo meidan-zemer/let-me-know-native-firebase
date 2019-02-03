@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withFirebase } from 'react-redux-firebase';
-import { firestoreConnect } from 'react-redux-firebase';
+import { firestoreConnect, isLoaded, isEmpty, withFirebase } from 'react-redux-firebase';
 import { contactPointsCollectionName } from '../consts';
 import { contactPointType } from 'let-me-know-ts-definitions';
-import { StyleSheet, View, ScrollView} from 'react-native';
-import {ListItem, Button, Text} from 'react-native-elements';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import { ListItem, Button, Text } from 'react-native-elements';
+import Loading from './Loading';
 
 interface props {
   contactPoints: contactPointType[];
@@ -14,10 +14,11 @@ interface props {
   firebase: any;
   classes: any;
   navigation: any;
+  empty:boolean;
+  loaded:boolean;
 }
 
-class ContactPoints extends Component<props>{
-
+class ContactPoints extends Component<props> {
   private navigateToAddContactPoint = () => {
     this.props.navigation.navigate('AddContactPoint');
   };
@@ -26,41 +27,50 @@ class ContactPoints extends Component<props>{
     this.props.navigation.navigate('ContactPoint', { cpId: cpId });
   };
 
-  render(){
-    return (
-      <View style={styles.container}>
-        <Text h4 style={{width:'100%', textAlign:"center"}}> Contact Points</Text>
-        <Button  title={"Add"} onPress={()=>this.navigateToAddContactPoint()} />
-        <ScrollView>
-          {this.props.contactPoints.map(cp => (
-            <ListItem
-              title={cp.name}
-              key={cp.name}
-              leftIcon={{ name: 'briefcase', type: 'material-community' }}
-              onPress={() => this.navigateToContactPoint(cp.cpId)}
-            />
-          ))}
-        </ScrollView>
-      </View>
-
-    );
+  render() {
+    if(!this.props.loaded){
+      return <Loading/>;
+    } else {
+      return (
+        <View style={styles.container}>
+          <Text h4 style={{ width: '100%', textAlign: 'center' }}>
+            {'Contact Points'}
+          </Text>
+          <Button title={'Add'} onPress={() => this.navigateToAddContactPoint()} />
+          <ScrollView>
+            {this.props.empty ?
+              <Text>{"No Contact Points"}</Text>
+              :
+              this.props.contactPoints.map(cp => (
+              <ListItem
+                title={cp.name}
+                key={cp.name}
+                leftIcon={{ name: 'briefcase', type: 'material-community' }}
+                onPress={() => this.navigateToContactPoint(cp.cpId)}
+              />
+            ))}
+          </ScrollView>
+        </View>
+      );
+    }
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column'
-  }
+    flexDirection: 'column',
+  },
 });
 
-
 const mapStateToProps = (state: any) => {
+  const contactPoints = state.firestore.ordered[contactPointsCollectionName],
+        loaded = isLoaded(contactPoints),
+        empty = isEmpty(contactPoints);
   return {
-    contactPoints: state.firestore.ordered[contactPointsCollectionName]
-      ? state.firestore.ordered[contactPointsCollectionName]
-      : [],
+    contactPoints,
+    empty,
+    loaded
   };
 };
 
@@ -81,5 +91,5 @@ export default compose(
         where: [['userId', '==', uid]],
       },
     ];
-  })
+  }),
 )(ContactPoints);

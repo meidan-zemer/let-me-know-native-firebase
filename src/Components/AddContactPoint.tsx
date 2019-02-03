@@ -1,37 +1,35 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Button ,Input,Text} from 'react-native-elements';
+import { Button, Input, Text } from 'react-native-elements';
 import { compose } from 'redux';
 import { withFirebase, withFirestore } from 'react-redux-firebase';
-import {withNavigation,NavigationScreenProp } from 'react-navigation';
-import {contactPointsCollectionName} from '../consts';
-import {contactPointType} from 'let-me-know-ts-definitions';
+import { withNavigation, NavigationScreenProp } from 'react-navigation';
+import { contactPointsCollectionName } from '../consts';
+import { contactPointType } from 'let-me-know-ts-definitions';
 
 interface props {
-  firebase:any;
-  navigation:NavigationScreenProp<null,null>;
-  firestore:any;
+  firebase: any;
+  navigation: NavigationScreenProp<null, null>;
+  firestore: any;
 }
 
-interface state  {
+interface state {
   name: string;
   description: string;
-  err:string | null;
-};
+  err: string | null;
+}
 
-
-class AddContactPoint extends  Component<props, state>{
-
-  constructor(props:props){
+class AddContactPoint extends Component<props, state> {
+  constructor(props: props) {
     super(props);
-    this.state={
-      name:"",
-      description:"",
-      err:null
-    }
+    this.state = {
+      name: '',
+      description: '',
+      err: null,
+    };
   }
 
-  addNewContactPoint(){
+  addNewContactPoint() {
     const newCpDocRef = this.props.firestore.collection(contactPointsCollectionName).doc();
     const cp: contactPointType = {
       cpId: newCpDocRef.id,
@@ -45,40 +43,46 @@ class AddContactPoint extends  Component<props, state>{
     newCpDocRef
       .set(cp)
       .then(() => {
-         this.setState({err:null});
-         this.props.navigation.goBack();
+        this.setState({ err: null });
+        this.props.navigation.goBack();
       })
       .catch((err: any) => {
-        this.setState({err:err});
+        this.setState({ err: err });
       });
   }
 
-  render(){
+  render() {
     return (
       <View style={styles.container}>
-          <Input style={styles.input} placeholder="contact point name" onChangeText={t=>this.setState({name:t})}/>
-          <Input style={styles.input} placeholder="contact point description" onChangeText={t=>this.setState({description:t})}/>
-          <Button style={styles.button} title={"Add"} onPress={()=>this.addNewContactPoint()}/>
-        { this.state.err ? <Text>{this.state.err}</Text> : null}
+        <Input style={styles.input} placeholder="contact point name" onChangeText={t => this.setState({ name: t })} />
+        <Input
+          style={styles.input}
+          placeholder="contact point description"
+          onChangeText={t => this.setState({ description: t })}
+        />
+        <Button style={styles.button} title={'Add'} onPress={() => this.addNewContactPoint()} />
+        {this.state.err ? <Text>{this.state.err}</Text> : null}
       </View>
     );
   }
 }
 
-const styles  = StyleSheet.create({
-  container:{
-    flex:1
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
   },
-  input:{
-    width:"100%",
-    textAlign: "center"
+  input: {
+    width: '100%',
+    textAlign: 'center',
   },
-  button:{
-    width: "100%",
-    textAlign:"center"
-  }
+  button: {
+    width: '100%',
+    textAlign: 'center',
+  },
 });
 
-
-export default compose(withFirebase,withFirestore,withNavigation)(AddContactPoint);
-
+export default compose(
+  withFirebase,
+  withFirestore,
+  withNavigation,
+)(AddContactPoint);
