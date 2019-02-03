@@ -16,6 +16,7 @@ interface props {
 interface state {
   name: string;
   description: string;
+  ownerAlias:string;
   err: string | null;
 }
 
@@ -25,6 +26,7 @@ class AddContactPoint extends Component<props, state> {
     this.state = {
       name: '',
       description: '',
+      ownerAlias:'',
       err: null,
     };
   }
@@ -38,7 +40,7 @@ class AddContactPoint extends Component<props, state> {
       createdDate: this.props.firestore.FieldValue.serverTimestamp(),
       modifiedDate: this.props.firestore.FieldValue.serverTimestamp(),
       userId: this.props.firebase.auth().currentUser.uid,
-      ownerAlias: '',
+      ownerAlias: this.state.ownerAlias,
     };
     newCpDocRef
       .set(cp)
@@ -54,11 +56,17 @@ class AddContactPoint extends Component<props, state> {
   render() {
     return (
       <View style={styles.container}>
+        <Text h4>{"Add new Contact Point"}</Text>
         <Input style={styles.input} placeholder="contact point name" onChangeText={t => this.setState({ name: t })} />
         <Input
           style={styles.input}
           placeholder="contact point description"
           onChangeText={t => this.setState({ description: t })}
+        />
+        <Input
+          style={styles.input}
+          placeholder="contact point owner alias"
+          onChangeText={t => this.setState({ ownerAlias: t })}
         />
         <Button style={styles.button} title={'Add'} onPress={() => this.addNewContactPoint()} />
         {this.state.err ? <Text>{this.state.err}</Text> : null}

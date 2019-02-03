@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loadingMessage:{
-    marginTop:100
+    marginBottom:100
   }
 });
