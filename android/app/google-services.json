@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "295381570076-mg6gj7cfm00ci3vconmbflnf2b0sj963.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zemer.letmeknow",
+            "certificate_hash": "c023203903d7b529f7d4e56a242789cc1143a933"
+          }
+        },
+        {
+          "client_id": "295381570076-5koji4uu1dbt16jopuqhmra9vdci57m2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zemer.letmeknow",
+            "certificate_hash": "2b9234cee97f088f3f9727e87c5466ce9fbd0624"
+          }
+        },
+        {
           "client_id": "295381570076-arucu4i0jovne15ce77dt0f44pue9ng0.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +45,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295381570076-arucu4i0jovne15ce77dt0f44pue9ng0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

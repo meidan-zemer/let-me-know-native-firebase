@@ -5,7 +5,7 @@ import { withFirebase } from 'react-redux-firebase';
 import { Button, Input, Text } from 'react-native-elements';
 import { Auth } from 'react-native-firebase/auth';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import Loading from './Loading';
 
 interface props {
@@ -44,7 +44,6 @@ class SignIn extends Component<props, state> {
       isSigninInProgress: false,
     };
   }
-
   signIn(email: string, password: string) {
     this.setState({ ...this.state, signIn: { ...this.state.signIn, err: null }, isSigninInProgress: true });
     this.props.firebase
@@ -75,14 +74,13 @@ class SignIn extends Component<props, state> {
     this.setState({ isSigninInProgress: true });
     GoogleSignin.hasPlayServices()
       .then(() => GoogleSignin.signIn())
-      .then((data)=>{
+      .then((data:any)=>{
         const credential = this.props.firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
-        // Login with the credential
         return this.props.firebase.auth().signInWithCredential(credential);
       })
+      .then(() => this.setState({ isSigninInProgress: false }))
       .catch(err => {
-        console.log(err);
-        this.setState({ ...this.state, signUp: { ...this.state.signUp, err: err.message }, isSigninInProgress: false });
+        this.setState({ ...this.state, signUp: { ...this.state.signUp, err: err.message, isSigninInProgress: false }});
       });
   }
 
@@ -91,7 +89,7 @@ class SignIn extends Component<props, state> {
       return <Loading />;
     } else
       return (
-        <View>
+        <ScrollView>
           <View>
             <Text h3>Sign In</Text>
             <Input
@@ -137,7 +135,7 @@ class SignIn extends Component<props, state> {
               color={GoogleSigninButton.Color.Dark}
             />
           </View>
-        </View>
+        </ScrollView>
       );
   }
 }
