@@ -17,7 +17,7 @@ import SideMenu from './SideMenu'
 const AppNavigator = createStackNavigator(
   {
     Home: { screen: ContactPoints,navigationOptions:{headerTitle:<Header title={"Contact Points"}/>}},
-    AddContactPoint: { screen: AddContactPoint,navigationOptions:{headerTitle:<Header title={"Add Contact Points"}/> }},
+    AddContactPoint: { screen: AddContactPoint,navigationOptions:{headerTitle:<Header title={"New Contact Point"}/> }},
     ContactPoint: { screen: ContactPoint,navigationOptions:{headerTitle:<Header title={"Contact Point"}/> }},
     ContactPointDiscussion: { screen: ContactPointDiscussion,navigationOptions:{headerTitle:<Header title={"Contact Point Discussion"}/> }},
   },
