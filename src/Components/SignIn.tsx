@@ -6,7 +6,7 @@ import { Button, Input, Text } from 'react-native-elements';
 import { Auth } from 'react-native-firebase/auth';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import { View } from 'react-native';
-import Loading from '../Loading';
+import Loading from './Loading';
 
 interface props {
   firebase: Auth;
@@ -75,6 +75,11 @@ class SignIn extends Component<props, state> {
     this.setState({ isSigninInProgress: true });
     GoogleSignin.hasPlayServices()
       .then(() => GoogleSignin.signIn())
+      .then((data)=>{
+        const credential = this.props.firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
+        // Login with the credential
+        return this.props.firebase.auth().signInWithCredential(credential);
+      })
       .catch(err => {
         console.log(err);
         this.setState({ ...this.state, signUp: { ...this.state.signUp, err: err.message }, isSigninInProgress: false });
