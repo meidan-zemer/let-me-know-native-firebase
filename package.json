@@ -36,6 +36,7 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "moment": "^2.24.0",
     "react": "^16.7.0",
     "react-native": "^0.58.0-rc.3",
     "react-native-elements": "^1.0.0",

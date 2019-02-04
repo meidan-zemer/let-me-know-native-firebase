@@ -7,6 +7,8 @@ import { contactPointType } from 'let-me-know-ts-definitions';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { ListItem, Button, Text } from 'react-native-elements';
 import Loading from './Loading';
+import LmkAddButton from './LmkAddButton';
+import {getTimeDate} from '../utils';
 
 interface props {
   contactPoints: contactPointType[];
@@ -34,7 +36,9 @@ class ContactPoints extends Component<props> {
     } else {
       return (
         <View style={styles.container}>
-          <Button title={'Add'} style={{borderRadius:100}} onPress={() => this.navigateToAddContactPoint()} />
+          <View style={{marginLeft:'85%', paddingTop:'5%'}}>
+            <LmkAddButton onClick={()=> this.navigateToAddContactPoint()} />
+          </View>
           <ScrollView>
             {this.props.empty ?
               <Text>{"No Contact Points"}</Text>
@@ -44,6 +48,8 @@ class ContactPoints extends Component<props> {
                 title={cp.name}
                 key={cp.name}
                 leftIcon={{ name: 'briefcase', type: 'material-community' }}
+                bottomDivider={true}
+                subtitle={getTimeDate(cp.createdDate)}
                 onPress={() => this.navigateToContactPoint(cp.cpId)}
               />
             ))}
