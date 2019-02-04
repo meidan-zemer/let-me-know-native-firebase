@@ -3,7 +3,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withFirebase } from 'react-redux-firebase';
-import SignIn from './Auth/SignIn';
+import SignIn from './SignIn';
 import ContactPoints from './ContactPoints';
 import ContactPoint from './ContactPoint';
 import AddContactPoint from './AddContactPoint';
