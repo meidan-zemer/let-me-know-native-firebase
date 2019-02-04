@@ -3,27 +3,41 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withFirebase } from 'react-redux-firebase';
+import ReactNativeSideMenu from 'react-native-side-menu';
 import SignIn from './SignIn';
 import ContactPoints from './ContactPoints';
 import ContactPoint from './ContactPoint';
 import AddContactPoint from './AddContactPoint';
 import ContactPointDiscussion from './ContactPointDiscussion';
-
+import Header from './Header';
+import SideMenu from './SideMenu'
 /*
  * Create navigation container
  */
 const AppNavigator = createStackNavigator(
   {
-    Home: { screen: ContactPoints },
-    AddContactPoint: { screen: AddContactPoint },
-    ContactPoint: { screen: ContactPoint },
-    ContactPointDiscussion: { screen: ContactPointDiscussion },
+    Home: { screen: ContactPoints,navigationOptions:{headerTitle:<Header title={"Contact Points"}/>}},
+    AddContactPoint: { screen: AddContactPoint,navigationOptions:{headerTitle:<Header title={"Add Contact Points"}/> }},
+    ContactPoint: { screen: ContactPoint,navigationOptions:{headerTitle:<Header title={"Contact Point"}/> }},
+    ContactPointDiscussion: { screen: ContactPointDiscussion,navigationOptions:{headerTitle:<Header title={"Contact Point Discussion"}/> }},
   },
   {
     initialRouteName: 'Home',
+    defaultNavigationOptions: () => ({
+      headerTitle:<Header title={"Let Me Know"}/>,
+      headerStyle:{backgroundColor: '#2089dc'}
+    })
   },
 );
 
+
+/*
+  static navigationOptions = () => ({
+    title: `Home`,
+    headerBackTitle: null
+  });
+
+* */
 const AppNavigatorComp = createAppContainer(AppNavigator);
 
 interface props {
@@ -40,7 +54,7 @@ class Main extends Component<props, state> {
   constructor(props: props) {
     super(props);
     this.state = {
-      user: null,
+      user: null
     };
   }
 
@@ -51,7 +65,12 @@ class Main extends Component<props, state> {
   }
 
   render() {
-    return this.state.user ? <AppNavigatorComp /> : <SignIn />;
+    return this.state.user ?
+      <ReactNativeSideMenu menu={<SideMenu/>}>
+        <AppNavigatorComp />
+      </ReactNativeSideMenu>
+      :
+      <SignIn />;
   }
 }
 

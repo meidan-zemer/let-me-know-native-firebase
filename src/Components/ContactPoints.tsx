@@ -19,6 +19,7 @@ interface props {
 }
 
 class ContactPoints extends Component<props> {
+
   private navigateToAddContactPoint = () => {
     this.props.navigation.navigate('AddContactPoint');
   };
@@ -33,10 +34,7 @@ class ContactPoints extends Component<props> {
     } else {
       return (
         <View style={styles.container}>
-          <Text h4 style={{ width: '100%', textAlign: 'center' }}>
-            {'Contact Points'}
-          </Text>
-          <Button title={'Add'} onPress={() => this.navigateToAddContactPoint()} />
+          <Button title={'Add'} style={{borderRadius:100}} onPress={() => this.navigateToAddContactPoint()} />
           <ScrollView>
             {this.props.empty ?
               <Text>{"No Contact Points"}</Text>

@@ -29,7 +29,8 @@
     "test": "jest",
     "tsc": "tsc",
     "clean": "cd android && gradlew clean && cd .. && react-native start --reset-cache",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\" \"src/**/*.tsx\" \"tests/**/*.ts\" \"tests/**/*.js\" \"tests/**/*.tsx\""
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\" \"src/**/*.tsx\" \"tests/**/*.ts\" \"tests/**/*.js\" \"tests/**/*.tsx\"",
+    "build": "cd android && gradlew assembleRelease && cd .."
   },
   "jest": {
     "preset": "react-native"
@@ -41,8 +42,9 @@
     "react-native-firebase": "^5.2.0",
     "react-native-gesture-handler": "^1.0.15",
     "react-native-google-signin": "^1.0.2",
+    "react-native-side-menu": "^1.1.3",
     "react-native-vector-icons": "^6.2.0",
-    "react-navigation": "^3.0.9",
+    "react-navigation": "^3.1.2",
     "react-redux": "^6.0.0",
     "react-redux-firebase": "^3.0.0-alpha.6",
     "redux": "^4.0.1",
