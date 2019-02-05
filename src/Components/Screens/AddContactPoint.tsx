@@ -56,19 +56,19 @@ class AddContactPoint extends Component<props, state> {
         this.setState({ err: err });
       });
   }
-  renderInput(ph: string, onChangeText: (t: string) => any) {
+  renderInput(ph: string, value:string, onChangeText: (t: string) => any) {
     return (
-      <LmkInput onChangeText={onChangeText} ph={ph}/>
+      <LmkInput onChangeText={onChangeText} ph={ph} value={value}/>
     );
   }
   renderNameInput(ph: string) {
-    return this.renderInput(ph, name => this.setState({ name }));
+    return this.renderInput(ph, this.state.name,name => this.setState({ name }));
   }
   renderDescriptionInput(ph: string) {
-    return this.renderInput(ph, t => this.setState({ description: t }));
+    return this.renderInput(ph, this.state.description,t => this.setState({ description: t }));
   }
   renderAliasInput() {
-    return this.renderInput('What will be your nick name?', t => this.setState({ ownerAlias: t }));
+    return this.renderInput('What will be your nick name?',this.state.ownerAlias, t => this.setState({ ownerAlias: t }));
   }
   renderCustom() {
     return (

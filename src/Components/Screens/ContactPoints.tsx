@@ -35,7 +35,7 @@ class ContactPoints extends Component<props> {
     } else {
       return (
         <View style={styles.container}>
-            <View style={{ marginLeft: '85%', paddingTop: '5%' }}>
+          <View style={{ marginLeft: '85%', paddingTop: '5%' }}>
             <LmkAddButton onClick={() => this.navigateToAddContactPoint()} />
           </View>
           <ScrollView>

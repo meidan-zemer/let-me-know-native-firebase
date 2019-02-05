@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     width: '95%',
   },
   button: {
-    textAlign: 'center',
+    //textAlign: 'center',
     borderRadius: 50,
   },
 });

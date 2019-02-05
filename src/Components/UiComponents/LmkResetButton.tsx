@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 export default (props:props)=>{
   return (
     <LmkCircleButton onPress={() => props.onClick()}>
-      <Icon iconStyle={styles.icon} name={'add'} type={'material'} />
+      <Icon iconStyle={styles.icon} name={'autorenew'} type={'material'} />
     </LmkCircleButton>
   );
 };
