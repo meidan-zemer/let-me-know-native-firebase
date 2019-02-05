@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View, Text, Alert } from 'react-native';
 import { withFirebase, isLoaded, firestoreConnect } from 'react-redux-firebase';
 import { withNavigation, NavigationScreenProp } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -10,6 +10,7 @@ import LmkLoading from '../UiComponents/LmkLoading';
 import LmkInput from '../UiComponents/LmkInput';
 import LmkButton from '../UiComponents/LmkButton';
 import LmkResetButton from '../UiComponents/LmkResetButton';
+import LmkDeleteButton from '../UiComponents/LmkDeleteButton';
 
 interface props {
   navigation: NavigationScreenProp<null, { cpId: string }>;
@@ -28,6 +29,7 @@ interface state {
   err: string | null;
   loading: boolean;
   reseting: boolean;
+  deleting: boolean;
 }
 
 class UpdateContactPoint extends Component<props, state> {
@@ -40,6 +42,7 @@ class UpdateContactPoint extends Component<props, state> {
       err: null,
       loading: false,
       reseting: false,
+      deleting: false,
     };
   }
   private reset() {
@@ -52,6 +55,29 @@ class UpdateContactPoint extends Component<props, state> {
       },
       () => this.setState({ reseting: false }),
     );
+  }
+  private promoteDelete() {
+    Alert.alert('Are you sure?', 'This will delete all discussions', [
+      {
+        text: 'Yes',
+        onPress: () => this.delete(),
+      },
+      {
+        text: 'No',
+      },
+    ]);
+  }
+  private delete() {
+    this.setState({ err: null, deleting: true });
+    this.props.firestore
+      .collection(contactPointsCollectionName)
+      .doc(this.props.cp.cpId)
+      .delete()
+      .then(() => {
+        this.setState({ deleting: false });
+        this.props.navigation.navigate('Home');
+      })
+      .catch((err: any) => this.setState({ err: err.message, deleting: false }));
   }
   private update() {
     let cp = {
@@ -75,13 +101,20 @@ class UpdateContactPoint extends Component<props, state> {
     if (this.state.loading) {
       return <LmkLoading label={'Updating ...'} />;
     }
+    if (!this.props.loaded) {
+      return <LmkLoading label={'Loading...'} />;
+    }
+    if (this.state.deleting) {
+      return <LmkLoading label={'Deleting...'} />;
+    }
     if (this.state.reseting) {
       return <LmkLoading label={'Reset ...'} />;
     } else {
       return (
         <ScrollView>
-          <View style={{ marginLeft: '85%', paddingTop: '5%' }}>
+          <View style={{ flexDirection: 'row', marginLeft: '70%', paddingTop: '5%', justifyContent: 'space-between' }}>
             <LmkResetButton onClick={() => this.reset()} />
+            <LmkDeleteButton onClick={() => this.promoteDelete()} />
           </View>
           <LmkInput
             label={'Contact point name'}

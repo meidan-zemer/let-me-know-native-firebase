@@ -57,6 +57,9 @@ class ContactPoint extends Component<props> {
   render() {
     if (!this.props.loaded) {
       return <LmkLoading />;
+    }
+    if (!this.props.cp) {
+      return <Text>{'No CP'}</Text>;
     } else {
       return (
         <View style={styles.container}>
