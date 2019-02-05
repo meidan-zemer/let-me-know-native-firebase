@@ -7,6 +7,7 @@ import { withNavigation, NavigationScreenProp } from 'react-navigation';
 import Picker from 'react-native-picker-select';
 import { contactPointsCollectionName } from '../consts';
 import { contactPointType } from 'let-me-know-ts-definitions';
+import LmkButton from './LmkButton';
 
 interface props {
   firebase: any;
@@ -102,11 +103,9 @@ class AddContactPoint extends Component<props, state> {
     );  }
   renderAddButton(){
     return (
-      <View style={{marginTop:15}}>
-        <Button titleStyle={{fontSize:20}} style={styles.button} title={'Create Contact Point'} onPress={() => this.addNewContactPoint()} />
-        {this.state.err ? <Text>{this.state.err}</Text> : null}
-      </View>
-  );
+      <LmkButton title={'Create Contact Point'}
+                 onPress={() => this.addNewContactPoint()}/>
+    );
   }
   render() {
     let content = null;
@@ -136,6 +135,7 @@ class AddContactPoint extends Component<props, state> {
           />
           {content}
           {this.state.type != null ? this.renderAddButton() : null}
+          {this.state.err ? <Text>{this.state.err}</Text> : null}
         </View>
       </ScrollView>
     );
@@ -150,7 +150,6 @@ const styles = StyleSheet.create({
     marginTop:'5%',
     marginBottom:'5%',
     fontSize:25,
-    //color:'white'
   },
   inputContainer:{
     marginTop:20
@@ -158,12 +157,7 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     textAlign: 'left',
-  },
-  button: {
-    width: '100%',
-    textAlign: 'center',
-    marginTop:'10%'
-  },
+  }
 });
 
 export default compose(
