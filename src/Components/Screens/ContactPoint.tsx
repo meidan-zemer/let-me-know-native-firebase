@@ -25,7 +25,6 @@ interface props {
 }
 
 class ContactPoint extends Component<props> {
-
   private navigateToDiscussion = (connectorId: string) => {
     this.props.navigation.navigate('ContactPointDiscussion', { cpId: this.props.cp.cpId, connectorId: connectorId });
   };
@@ -66,7 +65,7 @@ class ContactPoint extends Component<props> {
             <LmkSubTitle title={this.props.cp.description} />
           </View>
           <View style={{ marginLeft: '85%', paddingTop: '5%' }}>
-            <LmkEditButton onClick={()=>this.navigateToUpdate()}/>
+            <LmkEditButton onClick={() => this.navigateToUpdate()} />
           </View>
           {this.props.empty ? this.renderEmptyContent() : this.renderDiscussions()}
         </View>
@@ -88,9 +87,7 @@ const styles = StyleSheet.create({
     flex: 100,
     marginTop: '5%',
   },
-  editView:{
-
-  },
+  editView: {},
   emptyContent: {
     fontSize: 30,
     textAlign: 'center',

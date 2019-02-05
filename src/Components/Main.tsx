@@ -27,10 +27,10 @@ const AppNavigator = createStackNavigator(
       screen: ContactPointDiscussion,
       navigationOptions: { headerTitle: <Header title={'Contact Point Discussion'} /> },
     },
-    UpdateContactPoint:{
+    UpdateContactPoint: {
       screen: UpdateContactPoint,
-      navigationOptions: { headerTitle: <Header title={'Edit Contact Point'} /> }
-    }
+      navigationOptions: { headerTitle: <Header title={'Edit Contact Point'} /> },
+    },
   },
   {
     initialRouteName: 'Home',

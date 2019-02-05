@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default (props:props)=>{
+export default (props: props) => {
   return (
     <LmkCircleButton onPress={() => props.onClick()}>
       <Icon iconStyle={styles.icon} name={'add'} type={'material'} />

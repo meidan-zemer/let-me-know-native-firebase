@@ -8,8 +8,8 @@ import Picker from 'react-native-picker-select';
 import { contactPointsCollectionName } from '../../consts';
 import { contactPointType } from 'let-me-know-ts-definitions';
 import LmkButton from '../UiComponents/LmkButton';
-import LmkInput from '../UiComponents/LmkInput'
-import LmkSubTitle from '../UiComponents/LmkSubTitle'
+import LmkInput from '../UiComponents/LmkInput';
+import LmkSubTitle from '../UiComponents/LmkSubTitle';
 
 interface props {
   firebase: any;
@@ -56,19 +56,19 @@ class AddContactPoint extends Component<props, state> {
         this.setState({ err: err });
       });
   }
-  renderInput(ph: string, value:string, onChangeText: (t: string) => any) {
-    return (
-      <LmkInput onChangeText={onChangeText} ph={ph} value={value}/>
-    );
+  renderInput(ph: string, value: string, onChangeText: (t: string) => any) {
+    return <LmkInput onChangeText={onChangeText} ph={ph} value={value} />;
   }
   renderNameInput(ph: string) {
-    return this.renderInput(ph, this.state.name,name => this.setState({ name }));
+    return this.renderInput(ph, this.state.name, name => this.setState({ name }));
   }
   renderDescriptionInput(ph: string) {
-    return this.renderInput(ph, this.state.description,t => this.setState({ description: t }));
+    return this.renderInput(ph, this.state.description, t => this.setState({ description: t }));
   }
   renderAliasInput() {
-    return this.renderInput('What will be your nick name?',this.state.ownerAlias, t => this.setState({ ownerAlias: t }));
+    return this.renderInput('What will be your nick name?', this.state.ownerAlias, t =>
+      this.setState({ ownerAlias: t }),
+    );
   }
   renderCustom() {
     return (
@@ -119,7 +119,7 @@ class AddContactPoint extends Component<props, state> {
     return (
       <ScrollView>
         <View style={styles.container}>
-          <LmkSubTitle title={'What would you like to add?'}/>
+          <LmkSubTitle title={'What would you like to add?'} />
           <Picker
             items={[
               { label: 'Contact point for sale', value: 0 },
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     marginTop: '5%',
     marginBottom: '5%',
     fontSize: 25,
-  }
+  },
 });
 
 export default compose(
