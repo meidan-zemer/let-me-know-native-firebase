@@ -83,7 +83,6 @@ class ContactPointDiscussion extends Component<props, state> {
       )
       .then(() => {
         this.setState({ newMessageContent: '' });
-        console.log('Added message');
       })
       .catch((err: any) => {
         console.log(err);

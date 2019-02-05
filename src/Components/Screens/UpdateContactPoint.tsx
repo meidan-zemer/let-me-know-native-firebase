@@ -112,7 +112,7 @@ class UpdateContactPoint extends Component<props, state> {
     } else {
       return (
         <ScrollView>
-          <View style={{ flexDirection: 'row', marginLeft: '70%', paddingTop: '5%', justifyContent: 'space-between' }}>
+          <View style={{ flexDirection: 'row', marginLeft: '65%',marginRight:'5%', paddingTop: '5%', justifyContent: 'space-between' }}>
             <LmkResetButton onClick={() => this.reset()} />
             <LmkDeleteButton onClick={() => this.promoteDelete()} />
           </View>
