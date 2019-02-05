@@ -6,7 +6,7 @@ import { Button, Input, Text } from 'react-native-elements';
 import { Auth } from 'react-native-firebase/auth';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import { View, ScrollView } from 'react-native';
-import Loading from './Loading';
+import LmkLoading from '../UiComponents/LmkLoading';
 
 interface props {
   firebase: Auth;
@@ -74,19 +74,19 @@ class SignIn extends Component<props, state> {
     this.setState({ isSigninInProgress: true });
     GoogleSignin.hasPlayServices()
       .then(() => GoogleSignin.signIn())
-      .then((data:any)=>{
+      .then((data: any) => {
         const credential = this.props.firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
         return this.props.firebase.auth().signInWithCredential(credential);
       })
       .then(() => this.setState({ isSigninInProgress: false }))
       .catch(err => {
-        this.setState({ ...this.state, signUp: { ...this.state.signUp, err: err.message, isSigninInProgress: false }});
+        this.setState({ ...this.state, signUp: { ...this.state.signUp, err: err.message, isSigninInProgress: false } });
       });
   }
 
   render() {
     if (this.state.isSigninInProgress) {
-      return <Loading />;
+      return <LmkLoading />;
     } else
       return (
         <ScrollView>
