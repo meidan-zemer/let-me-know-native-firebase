@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     marginTop: '10%',
-    marginLeft:'2%',
+    marginLeft: '2%',
     width: '80%',
   },
   text: {

@@ -7,10 +7,10 @@ import { ListItem, Text, Input, Button } from 'react-native-elements';
 import { discussionsSubCollectionName, contactPointsCollectionName, messagesSubCollectionName } from '../../consts';
 import { contactPointType, discussionType, messageType } from 'let-me-know-ts-definitions';
 import LmkLoading from '../UiComponents/LmkLoading';
-import LmkMainTitle from '../UiComponents/LmkMainTitle'
+import LmkMainTitle from '../UiComponents/LmkMainTitle';
 import LmkSubTitle from '../UiComponents/LmkSubTitle';
 import LmkSendButton from '../UiComponents/LmkSendButton';
-import {getTimeDate} from '../../utils';
+import { getTimeDate } from '../../utils';
 
 interface props {
   cp: contactPointType;
@@ -95,12 +95,13 @@ class ContactPointDiscussion extends Component<props, state> {
   }
   renderNewMessage() {
     return (
-      <View style={{paddingBottom:'3%'}}>
-        <Input inputStyle={{textAlign: 'left'}}
-               placeholder={"Enter you message ..."}
-               onChangeText={t => this.setState({ newMessageContent: t })}
-               value={this.state.newMessageContent}
-               rightIcon={<LmkSendButton onClick={() => this.sendMessage()}/>}
+      <View style={{ paddingBottom: '3%' }}>
+        <Input
+          inputStyle={{ textAlign: 'left' }}
+          placeholder={'Enter you message ...'}
+          onChangeText={t => this.setState({ newMessageContent: t })}
+          value={this.state.newMessageContent}
+          rightIcon={<LmkSendButton onClick={() => this.sendMessage()} />}
         />
       </View>
     );
@@ -111,8 +112,15 @@ class ContactPointDiscussion extends Component<props, state> {
     } else {
       return (
         <ScrollView>
-          <LmkMainTitle title={this.props.discussion.title}/>
-          <LmkSubTitle title={'Created By ' + this.props.discussion.connectorAlias +" on "+ getTimeDate(this.props.discussion.createdDate)} />
+          <LmkMainTitle title={this.props.discussion.title} />
+          <LmkSubTitle
+            title={
+              'Created By ' +
+              this.props.discussion.connectorAlias +
+              ' on ' +
+              getTimeDate(this.props.discussion.createdDate)
+            }
+          />
           {this.props.noMessages || this.props.messages.length == 0 ? (
             <Text>{'No Messages'}</Text>
           ) : (

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 
 export default (props: props) => {
   return (
-    <View style={{marginRight:'5%'}}>
+    <View style={{ marginRight: '5%' }}>
       <LmkCircleButton onPress={() => props.onClick()}>
         <Icon iconStyle={styles.icon} name={'send'} type={'material'} />
       </LmkCircleButton>
