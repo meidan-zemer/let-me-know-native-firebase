@@ -165,6 +165,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-file-viewer')
+    implementation project(':react-native-html-to-pdf')
     implementation project(':react-native-google-signin')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-gesture-handler')

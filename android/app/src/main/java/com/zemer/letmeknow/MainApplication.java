@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.vinzscam.reactnativefileviewer.RNFileViewerPackage;
+import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -46,6 +48,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.asList(
         new MainReactPackage(),
+            new RNFileViewerPackage(),
+            new RNHTMLtoPDFPackage(),
         new RNGoogleSigninPackage(),
         new VectorIconsPackage(),
         new RNGestureHandlerPackage(),
