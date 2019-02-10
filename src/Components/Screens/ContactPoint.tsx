@@ -4,8 +4,7 @@ import { withFirebase, isLoaded, isEmpty, firestoreConnect } from 'react-redux-f
 import { View, StyleSheet, Alert } from 'react-native';
 import { ListItem, Text } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { discussionsSubCollectionName, contactPointsCollectionName } from '../../consts';
-import { contactPointType, discussionType } from 'let-me-know-common';
+import { contactPointType, discussionType,discussionsSubCollectionName, contactPointsCollectionName } from 'let-me-know-common';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import qrcode from 'yaqrcode';
 import FileViewer from 'react-native-file-viewer';

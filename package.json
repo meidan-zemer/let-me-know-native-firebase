@@ -35,6 +35,7 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "let-me-know-common": "git+https://github.com/meidan-zemer/let-me-know-common.git#master",
     "moment": "^2.24.0",
     "react": "^16.7.0",
     "react-native": "^0.58.0-rc.3",
@@ -50,7 +51,6 @@
     "react-navigation": "^3.1.2",
     "react-redux": "^6.0.0",
     "react-redux-firebase": "^3.0.0-alpha.6",
-    "let-me-know-common": "git+https://github.com/meidan-zemer/let-me-know-common.git#master",
     "redux": "^4.0.1",
     "redux-firebase": "^0.3.3",
     "redux-firestore": "^0.6.3",

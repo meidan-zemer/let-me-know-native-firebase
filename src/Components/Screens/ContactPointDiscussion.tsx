@@ -3,14 +3,12 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect, withFirebase, isLoaded, isEmpty } from 'react-redux-firebase';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { ListItem, Text, Input, Button } from 'react-native-elements';
-import { discussionsSubCollectionName, contactPointsCollectionName, messagesSubCollectionName } from '../../consts';
-import { contactPointType, discussionType, messageType } from 'let-me-know-common';
+import { ListItem, Text, Input } from 'react-native-elements';
+import { contactPointType, discussionType, messageType,discussionsSubCollectionName, contactPointsCollectionName, messagesSubCollectionName, getTimeDate  } from 'let-me-know-common';
 import LmkLoading from '../UiComponents/LmkLoading';
 import LmkMainTitle from '../UiComponents/LmkMainTitle';
 import LmkSubTitle from '../UiComponents/LmkSubTitle';
 import LmkSendButton from '../UiComponents/LmkSendButton';
-import { getTimeDate } from '../../utils';
 
 interface props {
   cp: contactPointType;
@@ -37,7 +35,7 @@ class ContactPointDiscussion extends Component<props, state> {
   }
   renderTimeStamp(ts: any) {
     if (ts) {
-      return new Date(ts).toDateString();
+      return getTimeDate(ts);
     } else {
       return 'Now';
     }
@@ -95,14 +93,20 @@ class ContactPointDiscussion extends Component<props, state> {
   }
   renderNewMessage() {
     return (
-      <View style={{ paddingBottom: '3%' }}>
-        <Input
-          inputStyle={{ textAlign: 'left' }}
-          placeholder={'Enter you message ...'}
-          onChangeText={t => this.setState({ newMessageContent: t })}
-          value={this.state.newMessageContent}
-          rightIcon={<LmkSendButton onClick={() => this.sendMessage()} />}
-        />
+      <View style={{ paddingBottom: '3%',flex:1, flexDirection:'row' }}>
+        <View style={{flex:8}}>
+          <Input
+            inputStyle={{ textAlign: 'left'}}
+            placeholder={'Enter you message ...'}
+            onChangeText={t => this.setState({ newMessageContent: t })}
+            value={this.state.newMessageContent}
+          />
+        </View>
+        <View style={{flex:1, marginRight:'5%'}}>
+          <LmkSendButton
+            onClick={() => this.sendMessage()}
+          />
+        </View>
       </View>
     );
   }
