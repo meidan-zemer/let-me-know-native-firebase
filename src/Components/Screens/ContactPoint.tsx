@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { withFirebase, isLoaded, isEmpty, firestoreConnect } from 'react-redux-firebase';
-import { View, StyleSheet,Alert } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import { ListItem, Text } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { discussionsSubCollectionName, contactPointsCollectionName } from '../../consts';
@@ -35,18 +35,17 @@ class ContactPoint extends Component<props> {
   private saveQR = () => {
     const name = this.props.cp.name;
     const desc = this.props.cp.description;
-    const url =`https://let-me-know-36373.firebaseapp.com/ContactPoint/${this.props.cp.cpId}`;
+    const url = `https://let-me-know-36373.firebaseapp.com/ContactPoint/${this.props.cp.cpId}`;
     const data = qrcode(url);
-    const html = `<html><body><h1>${name}</h1><h2>${desc}</h2><img src="${data}"/></body></html>`;
+    const html = `<html><body><h1 style="text-align:center;">${name}</h1><h2 style="text-align:center;">${desc}</h2><img style="display: block;margin-left: auto; margin-right: auto; width: 50%;" src="${data}"/></body></html>`;
     const options = {
       html: html,
       fileName: 'LetMeKnowQR',
       directory: 'Documents',
     };
-    RNHTMLtoPDF.convert(options).then((file:any)=>{
+    RNHTMLtoPDF.convert(options).then((file: any) => {
       FileViewer.open(file.filePath);
     });
-
   };
   private navigateToUpdate = () => {
     this.props.navigation.navigate('UpdateContactPoint', { cpId: this.props.cp.cpId });
@@ -86,8 +85,10 @@ class ContactPoint extends Component<props> {
             <LmkSubTitle title={this.props.cp.description} />
           </View>
           <View style={styles.buttonsContainer}>
-            <View style={{marginBottom:'5%'}}><LmkEditButton onClick={() => this.navigateToUpdate()} /></View>
-            <LmkCreateQRButton onClick={()=>this.saveQR()}/>
+            <View style={{ marginBottom: '5%' }}>
+              <LmkEditButton onClick={() => this.navigateToUpdate()} />
+            </View>
+            <LmkCreateQRButton onClick={() => this.saveQR()} />
           </View>
           {this.props.empty ? this.renderEmptyContent() : this.renderDiscussions()}
         </View>
@@ -105,10 +106,10 @@ const styles = StyleSheet.create({
   header: {
     flex: 10,
   },
-  buttonsContainer:{
+  buttonsContainer: {
     marginLeft: '85%',
     paddingTop: '5%',
-    justifyContent:'space-between'
+    justifyContent: 'space-between',
   },
   content: {
     flex: 100,
