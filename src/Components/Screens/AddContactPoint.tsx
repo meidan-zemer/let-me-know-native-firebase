@@ -6,7 +6,7 @@ import { withFirebase, withFirestore } from 'react-redux-firebase';
 import { withNavigation, NavigationScreenProp } from 'react-navigation';
 import Picker from 'react-native-picker-select';
 import { contactPointsCollectionName } from '../../consts';
-import { contactPointType } from 'let-me-know-ts-definitions';
+import { contactPointType } from 'let-me-know-common';
 import LmkButton from '../UiComponents/LmkButton';
 import LmkInput from '../UiComponents/LmkInput';
 import LmkSubTitle from '../UiComponents/LmkSubTitle';

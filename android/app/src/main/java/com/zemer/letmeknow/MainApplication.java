@@ -48,8 +48,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.asList(
         new MainReactPackage(),
-            new RNFileViewerPackage(),
-            new RNHTMLtoPDFPackage(),
+        new RNFileViewerPackage(),
+        new RNHTMLtoPDFPackage(),
         new RNGoogleSigninPackage(),
         new VectorIconsPackage(),
         new RNGestureHandlerPackage(),

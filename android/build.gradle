@@ -34,6 +34,19 @@ allprojects {
       url "$rootDir/../node_modules/react-native/android"
     }
   }
+  // force libs to use recent buildtools
+  // https://github.com/luggit/react-native-config/issues/299
+  subprojects {
+    afterEvaluate {
+      project ->
+        if (project.hasProperty("android")) {
+          android {
+            compileSdkVersion = 27
+            buildToolsVersion = "27.0.3"
+          }
+        }
+    }
+  }
 }
 
 task wrapper(type: Wrapper) {

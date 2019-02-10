@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect, isLoaded, isEmpty, withFirebase } from 'react-redux-firebase';
 import { contactPointsCollectionName } from '../../consts';
-import { contactPointType } from 'let-me-know-ts-definitions';
+import { contactPointType } from 'let-me-know-common';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { ListItem, Button, Text } from 'react-native-elements';
 import LmkLoading from '../UiComponents/LmkLoading';

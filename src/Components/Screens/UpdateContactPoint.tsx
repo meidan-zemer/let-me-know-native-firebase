@@ -5,7 +5,7 @@ import { withFirebase, isLoaded, firestoreConnect } from 'react-redux-firebase';
 import { withNavigation, NavigationScreenProp } from 'react-navigation';
 import { connect } from 'react-redux';
 import { contactPointsCollectionName, discussionsSubCollectionName } from '../../consts';
-import { contactPointType, discussionType } from 'let-me-know-ts-definitions';
+import { contactPointType, discussionType } from 'let-me-know-common';
 import LmkLoading from '../UiComponents/LmkLoading';
 import LmkInput from '../UiComponents/LmkInput';
 import LmkButton from '../UiComponents/LmkButton';

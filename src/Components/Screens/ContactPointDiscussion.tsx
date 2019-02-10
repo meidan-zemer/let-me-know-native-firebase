@@ -5,7 +5,7 @@ import { firestoreConnect, withFirebase, isLoaded, isEmpty } from 'react-redux-f
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { ListItem, Text, Input, Button } from 'react-native-elements';
 import { discussionsSubCollectionName, contactPointsCollectionName, messagesSubCollectionName } from '../../consts';
-import { contactPointType, discussionType, messageType } from 'let-me-know-ts-definitions';
+import { contactPointType, discussionType, messageType } from 'let-me-know-common';
 import LmkLoading from '../UiComponents/LmkLoading';
 import LmkMainTitle from '../UiComponents/LmkMainTitle';
 import LmkSubTitle from '../UiComponents/LmkSubTitle';
