@@ -38,9 +38,11 @@ class ContactPoints extends Component<props> {
             <LmkAddButton onClick={() => this.navigateToAddContactPoint()} />
           </View>
           <ScrollView>
-            {this.props.empty ? (
-              <Text>{'No Contact Points'}</Text>
-            ) : (
+            {this.props.empty ?
+               <View>
+                <Text style={styles.emptyContent}>{'No Contact Points'}</Text>
+              </View>
+             : (
               this.props.contactPoints.map(cp => (
                 <ListItem
                   title={cp.name}
@@ -64,6 +66,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
+  emptyContent: {
+    fontSize: 30,
+    textAlign: 'center',
+    marginTop:'50%'
+  }
 });
 
 const mapStateToProps = (state: any) => {
